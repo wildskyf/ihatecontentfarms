@@ -62,6 +62,8 @@ chrome.webRequest.onBeforeRequest.addListener(function(info) {
         cancel = block(info.url);
     }
 
+    if (cancel) chrome.tabs.update(info.tabId,{ url: "stop.html?to=" + encodeURIComponent(info.url)});
+
     return {cancel: cancel};
 
 },{
